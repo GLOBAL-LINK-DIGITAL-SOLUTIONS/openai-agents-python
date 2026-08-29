@@ -1,0 +1,464 @@
+{
+  "version": "3.0.0",
+  "name": "Ndlovu AI OpenAI Integration",
+  "description": "OpenAI-compatible provider configuration for AI NATION v3.0 with eval-driven routing and Dharmakaya governance",
+  "provider_configs": [
+    {
+      "provider_id": "openai_gpt4_turbo",
+      "name": "GPT-4 Turbo",
+      "model_id": "gpt-4-turbo",
+      "provider_type": "openai",
+      "api_endpoint": "https://api.openai.com/v1/chat/completions",
+      "auth_type": "bearer_token",
+      "parameters": {
+        "temperature": 0.7,
+        "top_p": 1.0,
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+        "max_tokens": 4096
+      },
+      "performance_targets": {
+        "latency_ms": 2000,
+        "quality_score_min": 0.85,
+        "cost_per_1k_tokens": 0.03,
+        "tokens_per_second_target": 50
+      },
+      "capabilities": [
+        "reasoning",
+        "code_generation",
+        "long_context",
+        "function_calling"
+      ],
+      "rate_limits": {
+        "requests_per_minute": 60,
+        "tokens_per_minute": 90000
+      },
+      "fallback_order": 1,
+      "enabled": true,
+      "sovereign_tags": [
+        "critical_reasoning",
+        "governance_analysis",
+        "constitutional_review"
+      ]
+    },
+    {
+      "provider_id": "openai_gpt4",
+      "name": "GPT-4",
+      "model_id": "gpt-4",
+      "provider_type": "openai",
+      "api_endpoint": "https://api.openai.com/v1/chat/completions",
+      "auth_type": "bearer_token",
+      "parameters": {
+        "temperature": 0.7,
+        "top_p": 1.0,
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+        "max_tokens": 2048
+      },
+      "performance_targets": {
+        "latency_ms": 2500,
+        "quality_score_min": 0.80,
+        "cost_per_1k_tokens": 0.03,
+        "tokens_per_second_target": 40
+      },
+      "capabilities": [
+        "reasoning",
+        "analysis",
+        "summarization"
+      ],
+      "rate_limits": {
+        "requests_per_minute": 60,
+        "tokens_per_minute": 80000
+      },
+      "fallback_order": 2,
+      "enabled": true,
+      "sovereign_tags": [
+        "analysis",
+        "governance"
+      ]
+    },
+    {
+      "provider_id": "openai_gpt35_turbo",
+      "name": "GPT-3.5 Turbo",
+      "model_id": "gpt-3.5-turbo",
+      "provider_type": "openai",
+      "api_endpoint": "https://api.openai.com/v1/chat/completions",
+      "auth_type": "bearer_token",
+      "parameters": {
+        "temperature": 0.7,
+        "top_p": 1.0,
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.0,
+        "max_tokens": 2048
+      },
+      "performance_targets": {
+        "latency_ms": 500,
+        "quality_score_min": 0.70,
+        "cost_per_1k_tokens": 0.0005,
+        "tokens_per_second_target": 100
+      },
+      "capabilities": [
+        "conversation",
+        "summarization",
+        "classification"
+      ],
+      "rate_limits": {
+        "requests_per_minute": 120,
+        "tokens_per_minute": 150000
+      },
+      "fallback_order": 3,
+      "enabled": true,
+      "sovereign_tags": [
+        "fast_inference",
+        "cost_efficient"
+      ]
+    },
+    {
+      "provider_id": "ndlovu_sovereign_ai",
+      "name": "Ndlovu Sovereign AI",
+      "model_id": "ndlovu-ai",
+      "provider_type": "ndlovu",
+      "api_endpoint": "http://ai_oracle:8017/v1/inference",
+      "auth_type": "internal_token",
+      "parameters": {
+        "temperature": 0.5,
+        "top_p": 0.9,
+        "frequency_penalty": 0.0,
+        "presence_penalty": 0.1,
+        "max_tokens": 2048,
+        "governance_mode": "dharmakaya_aware"
+      },
+      "performance_targets": {
+        "latency_ms": 800,
+        "quality_score_min": 0.75,
+        "cost_per_1k_tokens": 0.0001,
+        "tokens_per_second_target": 80,
+        "alignment_score_min": 0.90
+      },
+      "capabilities": [
+        "sovereign_reasoning",
+        "constitutional_analysis",
+        "dharmakaya_aware_generation",
+        "memory_integration",
+        "ritual_orchestration"
+      ],
+      "rate_limits": {
+        "requests_per_minute": 200,
+        "tokens_per_minute": 500000
+      },
+      "fallback_order": 0,
+      "enabled": true,
+      "sovereign_tags": [
+        "mandingu_native",
+        "constitutional_aware",
+        "memory_integrated",
+        "zero_cost"
+      ],
+      "dharmakaya_integration": {
+        "enabled": true,
+        "gate_check_required": true,
+        "red_mode_aware": true,
+        "alignment_threshold": 0.85
+      },
+      "memory_integration": {
+        "enabled": true,
+        "memory_network_url": "http://memory_network:8019",
+        "context_categories": [
+          "governance",
+          "treasury",
+          "ritual",
+          "sigil",
+          "trade"
+        ],
+        "max_context_tokens": 1000
+      }
+    }
+  ],
+  "routing_strategy": {
+    "type": "eval_driven_multi_criteria",
+    "default_provider": "ndlovu_sovereign_ai",
+    "fallback_chain": [
+      "ndlovu_sovereign_ai",
+      "openai_gpt4_turbo",
+      "openai_gpt4",
+      "openai_gpt35_turbo"
+    ],
+    "selection_criteria": {
+      "quality_weight": 0.5,
+      "latency_weight": 0.3,
+      "cost_weight": 0.15,
+      "alignment_weight": 0.05
+    },
+    "dynamic_routing": {
+      "enabled": true,
+      "eval_registry_url": "http://model_eval_registry:8022",
+      "update_interval_seconds": 300,
+      "score_cache_ttl_seconds": 60
+    },
+    "request_classification": {
+      "governance_domains": [
+        "mandingu_governance",
+        "constitutional",
+        "dharmakaya",
+        "red_mode"
+      ],
+      "routing_rules": [
+        {
+          "domain": "governance",
+          "preferred_providers": ["ndlovu_sovereign_ai", "openai_gpt4_turbo"],
+          "min_quality_threshold": 0.85,
+          "dharmakaya_gate": true
+        },
+        {
+          "domain": "recruitment",
+          "preferred_providers": ["openai_gpt35_turbo", "ndlovu_sovereign_ai"],
+          "latency_budget_ms": 1000,
+          "cost_optimized": true
+        },
+        {
+          "domain": "legal",
+          "preferred_providers": ["openai_gpt4_turbo", "openai_gpt4"],
+          "min_quality_threshold": 0.80,
+          "dharmakaya_gate": false
+        },
+        {
+          "domain": "analysis",
+          "preferred_providers": ["openai_gpt4", "ndlovu_sovereign_ai"],
+          "min_quality_threshold": 0.75
+        }
+      ]
+    }
+  },
+  "crytonet_integration": {
+    "enabled": true,
+    "security_layers": [
+      "quantum_shield",
+      "neural_firewall",
+      "behavioral_sentinel",
+      "transaction_guardian",
+      "identity_fortress",
+      "compliance_oracle"
+    ],
+    "signature_verification": {
+      "algorithm": "sha256",
+      "hmac_required": true,
+      "tamperproof_hash": "sha3-256"
+    },
+    "rate_limiting": {
+      "enabled": true,
+      "strategy": "token_bucket",
+      "global_limit": 10000,
+      "per_user_limit": 100,
+      "window_seconds": 60
+    },
+    "audit_trail": {
+      "enabled": true,
+      "store_full_payloads": true,
+      "retention_days": 90,
+      "immutable_ledger": "dharmakaya_ledger"
+    }
+  },
+  "dharmakaya_integration": {
+    "enabled": true,
+    "endpoint": "http://dharmakaya:8015",
+    "gate_checks": {
+      "constitution_compliance": true,
+      "red_mode_aware": true,
+      "alignment_scoring": true
+    },
+    "policies": [
+      {
+        "policy_id": "governance_safety",
+        "applies_to_domains": ["governance", "constitutional"],
+        "rules": [
+          {
+            "rule": "reject_anti_mandingu_content",
+            "severity": "critical",
+            "action": "block_and_alert"
+          },
+          {
+            "rule": "require_alignment_threshold",
+            "severity": "high",
+            "threshold": 0.85,
+            "action": "reduce_routing_priority"
+          }
+        ]
+      },
+      {
+        "policy_id": "treasury_protection",
+        "applies_to_domains": ["treasury", "otza"],
+        "rules": [
+          {
+            "rule": "multi_approval_required",
+            "severity": "critical",
+            "action": "require_secondary_approval"
+          },
+          {
+            "rule": "transaction_limits",
+            "severity": "high",
+            "max_transaction": 1000000,
+            "action": "escalate_if_exceeded"
+          }
+        ]
+      }
+    ],
+    "red_mode_triggers": {
+      "enabled": true,
+      "escalation_threshold": 0.85,
+      "alert_endpoint": "http://crytonet:8028/alerts/red-mode",
+      "audit_required": true
+    }
+  },
+  "monitoring": {
+    "prometheus": {
+      "enabled": true,
+      "metrics_port": 9090,
+      "scrape_interval_seconds": 15
+    },
+    "logging": {
+      "level": "info",
+      "format": "json",
+      "outputs": [
+        "stdout",
+        "crytonet_logs"
+      ]
+    },
+    "alerting": {
+      "enabled": true,
+      "channels": [
+        "crytonet_webhook",
+        "dharmakaya_ledger"
+      ],
+      "alert_rules": [
+        {
+          "alert": "HighErrorRate",
+          "threshold": 0.05,
+          "duration": "5m",
+          "action": "page_oncall"
+        },
+        {
+          "alert": "LatencyDegradation",
+          "threshold": 5000,
+          "duration": "10m",
+          "action": "degrade_model"
+        },
+        {
+          "alert": "CrytonetSecurityViolation",
+          "threshold": 1,
+          "duration": "1m",
+          "action": "block_and_alert"
+        }
+      ]
+    }
+  },
+  "deployment": {
+    "containers": [
+      {
+        "name": "openai_bridge",
+        "port": 8021,
+        "environment": {
+          "OPENAI_WEBHOOK_SECRET": "${OPENAI_WEBHOOK_SECRET}",
+          "DHARMAKAYA_GATE": "true",
+          "HMAC_VERIFY": "true"
+        }
+      },
+      {
+        "name": "openai_chat_endpoint",
+        "port": 8023,
+        "environment": {
+          "MODEL_EVAL_REGISTRY_URL": "http://model_eval_registry:8022",
+          "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+        }
+      },
+      {
+        "name": "model_eval_registry",
+        "port": 8022,
+        "environment": {
+          "BENCHMARK_DOMAINS": "mandingu_governance,jobhub_recruitment,african_legal",
+          "BENCHMARK_ENTRIES": "14"
+        }
+      },
+      {
+        "name": "eval_dataset_builder",
+        "port": 8025,
+        "environment": {
+          "BENCHMARK_DOMAINS": "mandingu_governance,jobhub_recruitment,african_legal",
+          "BENCHMARK_ENTRIES": "14"
+        }
+      },
+      {
+        "name": "websocket_server",
+        "port": 8024,
+        "environment": {
+          "CHANNELS": "container_health,model_performance,treasury_flow,threat_intel,governance_votes,deployment_status"
+        }
+      }
+    ],
+    "networks": [
+      "empire_core",
+      "anima_soul",
+      "sovereign_edge"
+    ],
+    "volumes": [
+      "postgres_data",
+      "redis_data",
+      "crytonet_logs",
+      "dharmakaya_ledger"
+    ]
+  },
+  "health_checks": {
+    "liveness": {
+      "endpoint": "/health",
+      "interval_seconds": 30,
+      "timeout_seconds": 10,
+      "failure_threshold": 3
+    },
+    "readiness": {
+      "endpoint": "/health",
+      "interval_seconds": 10,
+      "timeout_seconds": 5,
+      "failure_threshold": 2
+    },
+    "startup": {
+      "endpoint": "/health",
+      "interval_seconds": 5,
+      "timeout_seconds": 60,
+      "failure_threshold": 30
+    }
+  },
+  "security": {
+    "tls": {
+      "enabled": true,
+      "certificate_path": "/etc/ssl/certs/openai_bridge.crt",
+      "key_path": "/etc/ssl/private/openai_bridge.key",
+      "min_version": "1.3"
+    },
+    "api_keys": {
+      "rotation_interval_days": 30,
+      "enforcement": "required",
+      "scope": ["read", "write", "governance"]
+    },
+    "cors": {
+      "allowed_origins": [
+        "http://nearo_web:3000",
+        "http://localhost:3000"
+      ],
+      "allowed_methods": ["GET", "POST", "PUT", "DELETE"],
+      "allowed_headers": ["Content-Type", "Authorization", "X-Signature"]
+    }
+  },
+  "metadata": {
+    "builder": "King Mandingu Letlape",
+    "organization": "GLOBAL-LINK-DIGITAL-SOLUTIONS",
+    "module": "F1 Part 4-5 — AI NATION v3.0",
+    "created_at": "2026-08-29T00:00:00Z",
+    "tags": [
+      "openai_integration",
+      "eval_driven_routing",
+      "dharmakaya_governance",
+      "crytonet_security",
+      "sovereign_ai"
+    ],
+    "documentation_url": "https://github.com/GLOBAL-LINK-DIGITAL-SOLUTIONS/openai-agents-python/blob/main/README.md"
+  }
+}
